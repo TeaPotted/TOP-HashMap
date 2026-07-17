@@ -19,6 +19,24 @@ class HashMap {
     return hashCode;
   }
 
+  // growBuckets() doubles the capacity and rehashes all the entries to the new buckets
+  growBuckets() {
+    // double capacity
+    this.capacity *= 2;
+    // temporarily store the current buckets and current entries
+    let oldBuckets = this.buckets;
+    let entriesCopy = this.entries;
+    // create a new empty buckets thats double the size and reset the entries
+    this.buckets = new Array(this.capacity).fill(new LinkedList());
+    this.entries = [];
+    // reassign each entry to the new bucket
+    for (let entry of entriesCopy) {
+      // get the entry's property
+      const property = Object.keys(entry).join("");
+      this.set(property, entry[property]);
+    }
+  }
+
   // set(key, value) will set a new key value pair in buckets
   set(key, value) {
     // get the index of the bucket that will store the key value pair
