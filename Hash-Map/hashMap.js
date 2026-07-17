@@ -5,8 +5,8 @@ class HashMap {
     this.loadFactor = loadFactor;
     this.capacity = capacity;
     this.buckets = new Array(this.capacity).fill(new LinkedList());
-    this.entries = [];
   }
+  #entries = [];
 
   // hash(key) takes a key and produces a hash code with it
   hash(key) {
@@ -25,10 +25,10 @@ class HashMap {
     this.capacity *= 2;
     // temporarily store the current buckets and current entries
     let oldBuckets = this.buckets;
-    let entriesCopy = this.entries;
+    let entriesCopy = this.#entries;
     // create a new empty buckets thats double the size and reset the entries
     this.buckets = new Array(this.capacity).fill(new LinkedList());
-    this.entries = [];
+    this.#entries = [];
     // reassign each entry to the new bucket
     for (let entry of entriesCopy) {
       // get the entry's property
@@ -43,7 +43,7 @@ class HashMap {
     const index = this.hash(key);
 
     // if buckets has reached load factor, double buckets capacity
-    if (this.entries + 1 >= this.capacity * this.loadFactor) {
+    if (this.#entries + 1 >= this.capacity * this.loadFactor) {
       this.growBuckets();
     }
     // if key already exists, update the key's value, else just append new key value pair to bucket and entries
@@ -54,13 +54,13 @@ class HashMap {
 
       // update entries also
       // get the index of the existsing key value pair in entries and update the entry's value
-      const entryIndex = this.entries.findIndex((e) => e.hasOwnProperty(key));
-      this.entries[entryIndex] = { [key]: value };
+      const entryIndex = this.#entries.findIndex((e) => e.hasOwnProperty(key));
+      this.#entries[entryIndex] = { [key]: value };
       return;
     }
 
     this.buckets[index].append({ [key]: value });
-    this.entries.push({ [key]: value });
+    this.#entries.push({ [key]: value });
   }
 
   // get(key) returns the value that is assigned to the given key. if a key is not found, return null
@@ -90,18 +90,18 @@ class HashMap {
     // find the key's index in bucket then remove it from bucket and entries
     const keyIndex = this.buckets[index].findKey(key);
     this.buckets[index].removeAt(keyIndex);
-    this.entries = this.entries.filter((e) => !e.hasOwnProperty(key));
+    this.#entries = this.#entries.filter((e) => !e.hasOwnProperty(key));
   }
 
   // length() returns the number of stored keys in the hash map
   length() {
-    return this.entries.length;
+    return this.#entries.length;
   }
 
   // clear() removes all entries in the hash map
   clear() {
     // empty out entries and buckets, then reset capacity back to 16
-    this.entries = [];
+    this.#entries = [];
     this.buckets = [];
     this.capacity = 16;
   }
@@ -110,7 +110,7 @@ class HashMap {
   keys() {
     let keys = [];
     // push each entry's key to keys
-    for (let entry of this.entries) {
+    for (let entry of this.#entries) {
       keys.push(Object.keys(entry).join(""));
     }
     return keys;
@@ -120,7 +120,7 @@ class HashMap {
   values() {
     const values = [];
     // push each entry's value to values
-    for (let entry of this.entries) {
+    for (let entry of this.#entries) {
       values.push(Object.values(entry).join(""));
     }
     return values;
