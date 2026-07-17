@@ -52,3 +52,15 @@ test("HashMap.has(key) returns true if key is found in hash map and false if not
   expect(h.has("first")).toBe(true);
   expect(h.has("second")).toBe(false);
 });
+
+test("HashMap.reomove(key) removes the entry with that key from hash map", () => {
+  const h = new HashMap();
+  h.set("first", "apple");
+  h.remove("first");
+  expect(h.has("first")).toBe(false);
+});
+
+test("HashMap.reomove(key) returns false if key is not in hash map", () => {
+  const h = new HashMap();
+  expect(h.remove("first")).toBe(false);
+});
