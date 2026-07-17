@@ -99,3 +99,12 @@ test("HashMap.keys() returns an array of all the keys inside the hash map", () =
   h.set("third", "coconut");
   expect(h.keys()).toEqual(["first", "second", "third"]);
 });
+
+test("HashMap.values() returns an array of all the values inside the hash map", () => {
+  const h = new HashMap();
+  expect(h.values()).toEqual([]);
+  h.set("first", "apple");
+  h.set("second", "banana");
+  h.set("third", "coconut");
+  expect(h.values()).toEqual(["apple", "banana", "coconut"]);
+});

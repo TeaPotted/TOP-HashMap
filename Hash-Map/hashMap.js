@@ -97,7 +97,7 @@ class HashMap {
   length() {
     return this.entries.length;
   }
-  
+
   // clear() removes all entries in the hash map
   clear() {
     // empty out entries and buckets, then reset capacity back to 16
@@ -114,6 +114,16 @@ class HashMap {
       keys.push(Object.keys(entry).join(""));
     }
     return keys;
+  }
+
+  // values() returns an array containing all the values in the hash map
+  values() {
+    const values = [];
+    // push each entry's value to values
+    for (let entry of this.entries) {
+      values.push(Object.values(entry).join(""));
+    }
+    return values;
   }
 }
 
