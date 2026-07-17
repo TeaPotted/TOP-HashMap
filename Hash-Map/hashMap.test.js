@@ -45,3 +45,10 @@ test("HashMap.get(key) returns the value of the given key and returns null if ke
   expect(h.get("first")).toBe("apple");
   expect(h.get("second")).toBe(null);
 });
+
+test("HashMap.has(key) returns true if key is found in hash map and false if not", () => {
+  const h = new HashMap();
+  h.set("first", "apple");
+  expect(h.has("first")).toBe(true);
+  expect(h.has("second")).toBe(false);
+});

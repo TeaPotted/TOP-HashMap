@@ -74,6 +74,12 @@ class HashMap {
     const keyIndex = this.buckets[index].findKey(key);
     return this.buckets[index].at(keyIndex)[key];
   }
+
+  // has(key) returns true or false based on whether or not the key is in the hash map
+  has(key) {
+    const index = this.hash(key);
+    return this.buckets[index].containsKey(key) ? true : false;
+  }
 }
 
 export { HashMap };
