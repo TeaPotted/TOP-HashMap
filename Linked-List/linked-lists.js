@@ -218,6 +218,20 @@ class LinkedList {
     }
     return false;
   }
+
+  // findKey(key) returns the index of the first node containing the given key
+  // if key is not in list, return -1
+  findKey(key) {
+    let current = this.#head;
+    let i = 0;
+    // check each node's value until one has a property "key", then return i
+    while (current !== null) {
+      if (current.value.hasOwnProperty(key)) return i;
+      i++;
+      current = current.nextNode;
+    }
+    return -1;
+  }
 }
 
 export { LinkedList };

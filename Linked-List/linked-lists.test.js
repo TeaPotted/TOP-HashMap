@@ -171,3 +171,17 @@ test("LinkedList.containsKey(key) returns false if key is not in list", () => {
   l.append({ first: "apple" });
   expect(l.containsKey("second")).toBe(false);
 });
+
+test("LinkedList.findKey(key) returns the index of the first node containing the given key", () => {
+  const l = new LinkedList();
+  l.append("apple");
+  l.append({ first: "banana" });
+  expect(l.findKey("first")).toBe(1);
+});
+
+test("LinkedList.findKey(key) returns -1 if the given key is not found in list", () => {
+  const l = new LinkedList();
+  l.append("apple");
+  l.append({ first: "banana" });
+  expect(l.findKey("second")).toBe(-1);
+});
