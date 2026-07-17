@@ -90,3 +90,12 @@ test("HashMap.clear() resets capacity back to 16", () => {
   h.clear();
   expect(h.capacity).toBe(16);
 });
+
+test("HashMap.keys() returns an array of all the keys inside the hash map", () => {
+  const h = new HashMap();
+  expect(h.keys()).toEqual([]);
+  h.set("first", "apple");
+  h.set("second", "banana");
+  h.set("third", "coconut");
+  expect(h.keys()).toEqual(["first", "second", "third"]);
+});

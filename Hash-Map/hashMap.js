@@ -105,6 +105,16 @@ class HashMap {
     this.buckets = [];
     this.capacity = 16;
   }
+
+  // keys() returns an array containing all the keys in the hash map
+  keys() {
+    let keys = [];
+    // push each entry's key to keys
+    for (let entry of this.entries) {
+      keys.push(Object.keys(entry).join(""));
+    }
+    return keys;
+  }
 }
 
 export { HashMap };
