@@ -62,6 +62,18 @@ class HashMap {
     this.buckets[index].append({ [key]: value });
     this.entries.push({ [key]: value });
   }
+
+  // get(key) returns the value that is assigned to the given key. if a key is not found, return null
+  get(key) {
+    // get the index of which bucket key would be stored in
+    const index = this.hash(key);
+    // if bucket at index doesn't contain key, return null
+    if (!this.buckets[index].containsKey(key)) return null;
+
+    // else, find the index of key in bucket, and return key's value
+    const keyIndex = this.buckets[index].findKey(key);
+    return this.buckets[index].at(keyIndex)[key];
+  }
 }
 
 export { HashMap };

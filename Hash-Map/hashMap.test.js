@@ -38,3 +38,10 @@ test("HashMap.growBuckets() rehashes all entries", () => {
   h.growBuckets();
   expect(h.buckets[16].containsKey("first")).toBe(true);
 });
+
+test("HashMap.get(key) returns the value of the given key and returns null if key is not found", () => {
+  const h = new HashMap();
+  h.set("first", "apple");
+  expect(h.get("first")).toBe("apple");
+  expect(h.get("second")).toBe(null);
+});
