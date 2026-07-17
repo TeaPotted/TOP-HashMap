@@ -64,3 +64,12 @@ test("HashMap.reomove(key) returns false if key is not in hash map", () => {
   const h = new HashMap();
   expect(h.remove("first")).toBe(false);
 });
+
+test("HashMap.length() returns the number of stored keys in the hash map", () => {
+  const h = new HashMap();
+  expect(h.length()).toBe(0);
+  h.set("first", "apple");
+  h.set("second", "banana");
+  h.set("third", "coconut");
+  expect(h.length()).toBe(3);
+});

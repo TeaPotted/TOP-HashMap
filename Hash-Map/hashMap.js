@@ -92,6 +92,11 @@ class HashMap {
     this.buckets[index].removeAt(keyIndex);
     this.entries = this.entries.filter((e) => !e.hasOwnProperty(key));
   }
+
+  // length() returns the number of stored keys in the hash map
+  length() {
+    return this.entries.length;
+  }
 }
 
 export { HashMap };
