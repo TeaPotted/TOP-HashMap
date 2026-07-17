@@ -11,9 +11,9 @@ test("LinkedList.append(value) adds a new node containing value to the end of th
 test("LinkedList.prepend(value) adds a new node containing value to the start of the list", () => {
   const l = new LinkedList();
   l.append("banana");
-  l.prepend("apple")
-  expect(l.toString()).toBe("( apple ) -> ( banana ) -> null")
-})
+  l.prepend("apple");
+  expect(l.toString()).toBe("( apple ) -> ( banana ) -> null");
+});
 
 test("LinkedList.size() returns total number of nodes in the list", () => {
   const l = new LinkedList();
@@ -158,4 +158,16 @@ test("LinkedList.removeAt(index) throws a RangeError if the given index is out o
   l.append("coconut");
   expect(() => l.removeAt(-1)).toThrow(RangeError);
   expect(() => l.removeAt(3)).toThrow(RangeError);
+});
+
+test("LinkedList.containsKey(key) returns true if key is in list", () => {
+  const l = new LinkedList();
+  l.append({ first: "apple" });
+  expect(l.containsKey("first")).toBe(true);
+});
+
+test("LinkedList.containsKey(key) returns false if key is not in list", () => {
+  const l = new LinkedList();
+  l.append({ first: "apple" });
+  expect(l.containsKey("second")).toBe(false);
 });

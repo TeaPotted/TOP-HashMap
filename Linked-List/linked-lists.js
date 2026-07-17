@@ -207,6 +207,17 @@ class LinkedList {
       }
     }
   }
+
+  // function containsKey(key) returns true if the passed in key exists in list
+  containsKey(key) {
+    let current = this.#head;
+    while (current !== null) {
+      // if current node has a property "key", return true
+      if (current.value.hasOwnProperty(key)) return true;
+      current = current.nextNode;
+    }
+    return false;
+  }
 }
 
 export { LinkedList };
