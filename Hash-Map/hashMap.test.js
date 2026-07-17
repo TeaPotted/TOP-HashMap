@@ -73,3 +73,20 @@ test("HashMap.length() returns the number of stored keys in the hash map", () =>
   h.set("third", "coconut");
   expect(h.length()).toBe(3);
 });
+
+test("HashMap.clear() removes all entries in the hash map", () => {
+  const h = new HashMap();
+  h.set("first", "apple");
+  h.set("second", "banana");
+  h.set("third", "coconut");
+  h.clear();
+  expect(h.length()).toBe(0);
+});
+
+test("HashMap.clear() resets capacity back to 16", () => {
+  const h = new HashMap();
+  h.growBuckets();
+  expect(h.capacity).toBe(32);
+  h.clear();
+  expect(h.capacity).toBe(16);
+});

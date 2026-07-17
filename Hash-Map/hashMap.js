@@ -97,6 +97,14 @@ class HashMap {
   length() {
     return this.entries.length;
   }
+  
+  // clear() removes all entries in the hash map
+  clear() {
+    // empty out entries and buckets, then reset capacity back to 16
+    this.entries = [];
+    this.buckets = [];
+    this.capacity = 16;
+  }
 }
 
 export { HashMap };
