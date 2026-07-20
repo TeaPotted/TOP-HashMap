@@ -125,6 +125,22 @@ class HashMap {
     }
     return values;
   }
+
+  // entries() returns an array that contains each key, value pair in the hash map.
+  // Example: [[firstKey, firstValue], [secondKey, secondValue]]
+  entries() {
+    // create an array that will keep all the key, value pairs
+    let entriesArr = [];
+    // use a loop to go through each entry
+    for (let entry of this.#entries) {
+      // create an array to keep entry's key and value
+      let entryArr = [];
+      // push entry's parameter name and value to array
+      entryArr.push(Object.keys(entry).join(""), Object.values(entry).join(""));
+      entriesArr.push(entryArr);
+    }
+    return entriesArr;
+  }
 }
 
 export { HashMap };

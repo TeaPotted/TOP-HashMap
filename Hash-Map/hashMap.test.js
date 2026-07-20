@@ -108,3 +108,16 @@ test("HashMap.values() returns an array of all the values inside the hash map", 
   h.set("third", "coconut");
   expect(h.values()).toEqual(["apple", "banana", "coconut"]);
 });
+
+test("HashMap.entries() return an array that contains each key, value pair in hash map", () => {
+  const h = new HashMap();
+  expect(h.entries()).toEqual([]);
+  h.set("first", "apple");
+  h.set("second", "banana");
+  h.set("third", "coconut");
+  expect(h.entries()).toEqual([
+    ["first", "apple"],
+    ["second", "banana"],
+    ["third", "coconut"],
+  ]);
+});
