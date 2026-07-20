@@ -42,7 +42,7 @@ class HashMap {
     // get the index of the bucket that will store the key value pair
     const index = this.hash(key);
 
-    // if key already exists, update the key's value. else jusr append new key value pair to bucket and entries
+    // if key already exists, update the key's value. else just append new key value pair to bucket and entries
     if (this.buckets[index].containsKey(key)) {
       const keyIndex = this.buckets[index].findKey(key);
       this.buckets[index].removeAt(keyIndex);
