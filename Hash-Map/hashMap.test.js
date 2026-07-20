@@ -10,6 +10,25 @@ test("HashMap.set(key, value) sets a new key value pair", () => {
   expect(h.buckets[0].head()).toEqual({ first: "apple" });
 });
 
+test("HashMap.set(key, value) doubles the capacity when hash map reaches load factor", () => {
+  const test = new HashMap();
+  test.set("apple", "red");
+  test.set("banana", "yellow");
+  test.set("carrot", "orange");
+  test.set("dog", "brown");
+  test.set("elephant", "gray");
+  test.set("frog", "green");
+  test.set("grape", "purple");
+  test.set("hat", "black");
+  test.set("ice cream", "white");
+  test.set("jacket", "blue");
+  test.set("kite", "pink");
+  test.set("lion", "golden");
+  expect(test.capacity).toBe(16);
+  test.set("moon", "silver");
+  expect(test.capacity).toBe(32);
+});
+
 test("HashMap.set(key, value) updates key's value if key already exists in bucket", () => {
   const h = new HashMap();
   h.set("first", "apple");
