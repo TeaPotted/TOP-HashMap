@@ -42,11 +42,7 @@ class HashMap {
     // get the index of the bucket that will store the key value pair
     const index = this.hash(key);
 
-    // if buckets has reached load factor, double buckets capacity
-    if (this.#entries + 1 >= this.capacity * this.loadFactor) {
-      this.growBuckets();
-    }
-    // if key already exists, update the key's value, else just append new key value pair to bucket and entries
+    // if key already exists, update the key's value. else jusr append new key value pair to bucket and entries
     if (this.buckets[index].containsKey(key)) {
       const keyIndex = this.buckets[index].findKey(key);
       this.buckets[index].removeAt(keyIndex);
@@ -57,6 +53,11 @@ class HashMap {
       const entryIndex = this.#entries.findIndex((e) => e.hasOwnProperty(key));
       this.#entries[entryIndex] = { [key]: value };
       return;
+    }
+
+    // if buckets have reached load factor, double the capacity before appending new pair to bucket and entries
+    if (this.#entries.length + 1 > this.capacity * this.loadFactor) {
+      this.growBuckets();
     }
 
     this.buckets[index].append({ [key]: value });
