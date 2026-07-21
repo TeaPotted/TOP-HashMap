@@ -90,3 +90,20 @@ test("HashSet.length() returns the number of stored keys in the hash set", () =>
   h.set("coconut");
   expect(h.length()).toBe(3);
 });
+
+test("HashSet.clear() removes all entries in the hash set", () => {
+  const h = new HashSet();
+  h.set("first");
+  h.set("second");
+  h.set("third");
+  h.clear();
+  expect(h.length()).toBe(0);
+});
+
+test("HashSet.clear() resets capacity back to 16", () => {
+  const h = new HashSet();
+  h.growBuckets();
+  expect(h.capacity).toBe(32);
+  h.clear();
+  expect(h.capacity).toBe(16);
+});
