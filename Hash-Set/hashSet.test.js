@@ -57,3 +57,14 @@ test("HashSet.set(key) appends new key value pair to bucket if bucket is not emp
   expect(h.buckets[3].head()).toEqual("Rama");
   expect(h.buckets[3].tail()).toEqual("Sita");
 });
+
+test("HashSet.has(key) returns true if key is found in the hash set", () => {
+  const h = new HashSet();
+  h.set("apple");
+  expect(h.has("apple")).toBe(true);
+});
+
+test("HashSet.has(key) returns false if key is not found in the hash set", () => {
+  const h = new HashSet();
+  expect(h.has("apple")).toBe(false);
+});

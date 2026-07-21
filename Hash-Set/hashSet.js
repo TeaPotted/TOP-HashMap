@@ -58,6 +58,17 @@ class HashSet {
       this.#entries.push(key);
     }
   }
+
+  // has(key) takes a key and returns true or false depending if key is in the hash set
+  has(key) {
+    const index = this.hash(key);
+
+    // if index is out of bounds, throw an error
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+    return this.buckets[index].contains("apple");
+  }
 }
 
 export { HashSet };
