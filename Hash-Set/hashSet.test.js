@@ -81,3 +81,12 @@ test("HashSet.remove(key) returns false if key is not found in the hash set", ()
   const h = new HashSet();
   expect(h.remove("apple")).toBe(false);
 });
+
+test("HashSet.length() returns the number of stored keys in the hash set", () => {
+  const h = new HashSet();
+  expect(h.length()).toBe(0);
+  h.set("apple");
+  h.set("banana");
+  h.set("coconut");
+  expect(h.length()).toBe(3);
+});

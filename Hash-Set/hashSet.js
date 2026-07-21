@@ -87,6 +87,11 @@ class HashSet {
     this.#entries = this.#entries.filter((e) => !e === key);
     return true;
   }
+
+  // length() returns the number of stored keys in the hash set
+  length() {
+    return this.#entries.length;
+  }
 }
 
 export { HashSet };
