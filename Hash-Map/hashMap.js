@@ -41,6 +41,10 @@ class HashMap {
   set(key, value) {
     // get the index of the bucket that will store the key value pair
     const index = this.hash(key);
+    // if index is out of bounds, throw an error
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
 
     // if key already exists, update the key's value. else just append new key value pair to bucket and entries
     if (this.buckets[index].containsKey(key)) {
@@ -68,6 +72,11 @@ class HashMap {
   get(key) {
     // get the index of which bucket key would be stored in
     const index = this.hash(key);
+    // if index is out of bounds, throw an error
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+
     // if bucket at index doesn't contain key, return null
     if (!this.buckets[index].containsKey(key)) return null;
 
@@ -79,12 +88,22 @@ class HashMap {
   // has(key) returns true or false based on whether or not the key is in the hash map
   has(key) {
     const index = this.hash(key);
+    // if index is out of bounds, throw an error
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+
     return this.buckets[index].containsKey(key) ? true : false;
   }
 
   // remove(key) removes the entry with that key in hash map and return true. if key not in hash map, return false
   remove(key) {
     const index = this.hash(key);
+    // if index is out of bounds, throw an error
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+
     // if key is not in hash map, return false
     if (!this.buckets[index].containsKey(key)) return false;
 
@@ -92,7 +111,7 @@ class HashMap {
     const keyIndex = this.buckets[index].findKey(key);
     this.buckets[index].removeAt(keyIndex);
     this.#entries = this.#entries.filter((e) => !e.hasOwnProperty(key));
-    return true
+    return true;
   }
 
   // length() returns the number of stored keys in the hash map
