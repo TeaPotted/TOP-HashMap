@@ -100,6 +100,11 @@ class HashSet {
     this.buckets = [];
     this.capacity = 16;
   }
+
+  // keys() returns an array of all the keys inside the hash set
+  keys() {
+    return this.#entries;
+  }
 }
 
 export { HashSet };

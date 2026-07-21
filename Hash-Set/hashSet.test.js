@@ -107,3 +107,12 @@ test("HashSet.clear() resets capacity back to 16", () => {
   h.clear();
   expect(h.capacity).toBe(16);
 });
+
+test("HashSet.keys() returns an array of all the keys inside the hash set", () => {
+  const h = new HashSet();
+  expect(h.keys()).toEqual([]);
+  h.set("first");
+  h.set("second");
+  h.set("third");
+  expect(h.keys()).toEqual(["first", "second", "third"]);
+});
