@@ -69,6 +69,24 @@ class HashSet {
     }
     return this.buckets[index].contains("apple");
   }
+
+  // remove(key) removes the key in the hash set and return true. if key is not found, return false
+  remove(key) {
+    const index = this.hash(key);
+    // if index is out of bounds, throw an error
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+
+    // if key is not in hash map, return false
+    if (!this.buckets[index].contains(key)) return false;
+
+    // find the key's index in bucket then remove it from bucket and entries
+    const keyIndex = this.buckets[index].findIndex(key);
+    this.buckets[index].removeAt(keyIndex);
+    this.#entries = this.#entries.filter((e) => !e === key);
+    return true;
+  }
 }
 
 export { HashSet };

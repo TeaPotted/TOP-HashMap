@@ -68,3 +68,16 @@ test("HashSet.has(key) returns false if key is not found in the hash set", () =>
   const h = new HashSet();
   expect(h.has("apple")).toBe(false);
 });
+
+test("HashSet.remove(key) removes the key from hash set and returns true", () => {
+  const h = new HashSet();
+  h.set("apple");
+  h.set("banana");
+  expect(h.remove("apple")).toBe(true);
+  expect(h.has("apple")).toBe(false);
+});
+
+test("HashSet.remove(key) returns false if key is not found in the hash set", () => {
+  const h = new HashSet();
+  expect(h.remove("apple")).toBe(false);
+});
