@@ -20,6 +20,22 @@ class HashSet {
     return hashCode;
   }
 
+  // growBuckets() doubles the capacity and rehashes all keys in buckets
+  growBuckets() {
+    // double capacity
+    this.capacity *= 2;
+    // temporarily store the current buckets and current entries
+    let oldBuckets = this.buckets;
+    let entriesCopy = this.#entries;
+
+    // create a new empty buckets thats double the size and reset the entries
+    this.buckets = new Array(this.capacity).fill(new LinkedList());
+    this.#entries = [];
+
+    // rehash all entries
+    entriesCopy.map((e) => this.set(e));
+  }
+
   // set(key) will set a new key in buckets
   set(key) {
     // get the index of the bucket that will store the key
