@@ -82,7 +82,7 @@ class HashMap {
     return this.buckets[index].containsKey(key) ? true : false;
   }
 
-  // remove(key) removes the entry with that key in hash map. if key not in hash map, return false
+  // remove(key) removes the entry with that key in hash map and return true. if key not in hash map, return false
   remove(key) {
     const index = this.hash(key);
     // if key is not in hash map, return false
@@ -92,6 +92,7 @@ class HashMap {
     const keyIndex = this.buckets[index].findKey(key);
     this.buckets[index].removeAt(keyIndex);
     this.#entries = this.#entries.filter((e) => !e.hasOwnProperty(key));
+    return true
   }
 
   // length() returns the number of stored keys in the hash map
