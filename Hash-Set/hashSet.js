@@ -19,6 +19,29 @@ class HashSet {
     }
     return hashCode;
   }
+
+  // set(key) will set a new key in buckets
+  set(key) {
+    // get the index of the bucket that will store the key
+    const index = this.hash(key);
+
+    // if index is out of bounds, throw an error
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+
+    // if key already exists, return. else, append new key to bucket and index
+    if (this.buckets[index].contains(key)) return;
+    else {
+      // if buckets have reached load factor, double the capacity before adding a new key
+      if (this.#entries.length + 1 > this.capacity * this.loadFactor) {
+        this.growBuckets();
+      }
+
+      this.buckets[index].append(key);
+      this.#entries.push(key);
+    }
+  }
 }
 
 export { HashSet };
